@@ -9,13 +9,13 @@ namespace BB2020.Data
 {
     public class BBDbContext : DbContext
     {
-        public DbSet<Activity> Activities { get; set; }
-        public DbSet<Chat> Chats { get; set; }
-        public DbSet<Comment> Comments { get; set; }
-        public DbSet<File> Files { get; set; }
-        public DbSet<Group> Groups { get; set; }
-        public DbSet<User> Users { get; set; }
-        public DbSet<UserInGroup> UserInGroups { get; set; }
+        public DbSet<Activity> Activity { get; set; }
+        public DbSet<Chat> Chat { get; set; }
+        public DbSet<Comment> Comment { get; set; }
+        public DbSet<File> File { get; set; }
+        public DbSet<Group> Group { get; set; }
+        public DbSet<User> User { get; set; }
+        public DbSet<UserInGroup> UserInGroup { get; set; }
         public BBDbContext( DbContextOptions<BBDbContext> options) : base(options)
         {
         }

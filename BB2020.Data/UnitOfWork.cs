@@ -12,6 +12,12 @@ namespace BB2020.Data
     {
         private readonly BBDbContext _context;
         private ChatRepository _chatRepository;
+        private ActivityRepository _activityRepository;
+        private CommentRepository _commentRepository;
+        private UserInGroupRepository _userInGroupRepository;
+        private UserRepository _userRepository;
+        private FileRepository _fileRepository;
+        private GroupRepository _groupRepository;
 
         public UnitOfWork(BBDbContext context)
         {
@@ -19,26 +25,26 @@ namespace BB2020.Data
         }
         public IChatRepository Chats => _chatRepository ??= new ChatRepository(_context);
 
-        public IActivityRepository Activities => throw new NotImplementedException();
+        public IActivityRepository Activities => _activityRepository??= new ActivityRepository(_context);
 
-        public ICommentRepository Comments => throw new NotImplementedException();
+        public ICommentRepository Comments => _commentRepository ??= new CommentRepository(_context);
 
-        public IUserInGroupRepository UserInGroups => throw new NotImplementedException();
+        public IUserInGroupRepository UserInGroups => _userInGroupRepository ??= new UserInGroupRepository(_context);
 
-        public IUserRepository Users => throw new NotImplementedException();
+        public IUserRepository Users => _userRepository ??= new UserRepository(_context);
 
-        public IFileRepository Files => throw new NotImplementedException();
+        public IFileRepository Files => _fileRepository ??= new FileRepository(_context);
 
-        public IGroupRepository Groups => throw new NotImplementedException();
+        public IGroupRepository Groups => _groupRepository ??= new GroupRepository(_context);
 
-        public Task<int> CommitAsync()
+        public async Task<int> CommitAsync()
         {
-            throw new NotImplementedException();
+            return await _context.SaveChangesAsync();
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            _context.Dispose();
         }
     }
 }
